@@ -1,2 +1,3 @@
 # nostripes_nmap_scan
-Light weigh nmap scanner in .py
+Light weight nmap scanner in .py
+Created as part of project portfolio
