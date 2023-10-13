@@ -1,17 +1,17 @@
 #!/usr/bin/python3
 
-import nmap
+import nmap   #imports nmap module into python script
 
-nscan = nmap.PortScanner()
-p_start = 20
-p_end = 700
+nscan = nmap.PortScanner()  
+p_start = 20    #port range start 
+p_end = 700     #port range end
 
 print("\nA Basic Nmap Automation Tool\nby NostripesZebra")
 print('\n---------------****************-------------')
-print('---------------*******V********-------------')
+print('---------------*******NSZ********-------------')
 
-ip_addr = input("\nPlease enter the ip address you want to scan: ")
-print("The ip address you entered is: ", ip_addr)
+ip_addr = input("\nPlease enter the ip address you want to scan: ")  #user ip entry
+print("The ip address you entered is: ", ip_addr)   #user input verification
 type(ip_addr)
 
 resp = input("""\nPlease Enter Scan Type
@@ -22,8 +22,8 @@ resp = input("""\nPlease Enter Scan Type
 print("You have selected: ", resp)
 
 if resp == '1':
-    print("Nmap Version: ", nscan.nmap_version())
-    nscan.scan(ip_addr, '1-1024', '-v -sS')
+    print("Nmap Version: ", nscan.nmap_version())        #displays nmap version 
+    nscan.scan(ip_addr, '1-1024', '-v -sS')              #scan ip_address ports
     print(nscan.scaninfo())
     print("Ip Stat: ", nscan[ip_addr].state())
     print(nscan[ip_addr].all_protocols())
@@ -39,14 +39,14 @@ elif resp == '2':
 
 elif resp == '3':
     print("Nmap Version: ", nscan.nmap_version())
-    nscan.scan(ip_addr, '1-1024', '-v -sS -sC -sV -A -O')
+    nscan.scan(ip_addr, '20-700', '-v -sS -sC -sV -A -O')
     print(nscan.scaninfo())
     print("Ip Stat: ", nscan[ip_addr].state())
     print(nscan[ip_addr].all_protocols())
     for i in range(p_start,p_end+1):
-        res = nscan.scan(ip_addr,str(i))
+        res = nscan.scan(ip_addr,str(i))               
         res = res['scan'][ip_addr]['tcp'][i]['state']
-        print(f'port {i} is {res}')
+        print(f'port {i} is {res}.')                      #print output PORT STATUS
     
 
 elif resp >= '4':
